@@ -1,5 +1,8 @@
 <template>
   <div class="flex items-center justify-center flex-col w-full min-h-screen">
+    <AppPopup @click="showPopup = false" v-if="showPopup">
+      <template #content> Sign in please :') </template>
+    </AppPopup>
     <div class="w-[600px]">
       <client-only>
         <HeroImg />
@@ -37,6 +40,13 @@ export default defineComponent({
   setup() {
     const { $axios } = useContext()
     const message = ref()
+    const showPopup = ref(false)
+    const context = useContext()
+
+    onMounted(() => {
+      console.log($nuxt)
+      $nuxt.$on('on-signin-click', () => console.log('click'))
+    })
 
     function userRegister() {
       $axios
@@ -52,6 +62,7 @@ export default defineComponent({
     return {
       message,
       userRegister,
+      showPopup,
     }
   },
 })

@@ -23,7 +23,10 @@ export default {
   plugins: [],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
-  components: true,
+  components: [
+    '@/components',
+    {path: '@/components/templates/', prefix: 'template'}
+  ],
 
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
   buildModules: ['@nuxtjs/tailwindcss', '@nuxtjs/composition-api'],
